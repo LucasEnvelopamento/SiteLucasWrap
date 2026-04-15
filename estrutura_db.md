@@ -18,16 +18,16 @@ Armazena solicitações de orçamento vindas do site.
 | `data_solicitacao` | TIMESTAMP | Data/hora do pedido. |
 | `status` | VARCHAR(20) | (Novo, Em Atendimento, Finalizado). |
 
-### 2. `galeria_trabalhos`
-Metadados das fotos para o carrossel dinâmico.
+### 2. `trabalhos_recentes`
+Tabela que vincula as fotos do bucket com metadados personalizados.
 
 | Coluna | Tipo | Descrição |
 | :--- | :--- | :--- |
 | `id` | UUID (PK) | Identificador único. |
-| `url_imagem` | TEXT | Caminho ou URL da imagem. |
-| `titulo` | VARCHAR(100) | Título do trabalho (Ex: BMW M4 PPF). |
-| `categoria` | VARCHAR(50) | Categoria do serviço. |
-| `ordem_exibicao` | INT | Ordem no carrossel. |
+| `titulo` | VARCHAR(255) | Título personalizado (Ex: BMW M4 - Envelopamento Bronze). |
+| `url` | TEXT | URL pública da imagem. |
+| `storage_path` | TEXT | Caminho interno no bucket. |
+| `created_at` | TIMESTAMP | Data de criação. |
 
 ## 📐 Regras de Integridade
 - Validar formato de WhatsApp antes da inserção.

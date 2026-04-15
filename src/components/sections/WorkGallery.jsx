@@ -10,27 +10,24 @@ const WorkGallery = () => {
     const fetchImages = async () => {
       try {
         setLoading(true);
-        // Busca a lista de arquivos no bucket 'trabalhos-recentes'
-        const { data, error } = await supabase.storage.from('trabalhos-recentes').list('', {
-          limit: 12,
-          offset: 0,
-          sortBy: { column: 'name', order: 'desc' }
-        });
+        // Busca os dados diretamente da tabela 'trabalhos_recentes'
+        const { data, error } = await supabase
+          .from('trabalhos_recentes')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(12);
 
         if (error) {
-          console.error('Erro na listagem:', error);
+          console.error('Erro ao buscar dados da tabela:', error);
           throw error;
         }
 
         if (data) {
-          const list = data.filter(file => file.name !== '.emptyFolderPlaceholder').map(file => {
-            const { data: { publicUrl } } = supabase.storage.from('trabalhos-recentes').getPublicUrl(file.name);
-            return {
-              image: publicUrl,
-              title: file.name.split('.')[0].replace(/_/g, ' '),
-              category: 'Portfólio'
-            };
-          });
+          const list = data.map(item => ({
+            image: item.url,
+            title: item.titulo,
+            category: 'Portfólio'
+          }));
           setWorks(list);
         }
       } catch (err) {

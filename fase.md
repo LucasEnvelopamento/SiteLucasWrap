@@ -69,3 +69,8 @@ Este documento descreve as etapas de desenvolvimento do site para a oficina auto
 - [x] Criar interface moderna para visualização de fotos.
 - [x] Configurar regras de segurança (RLS) no Supabase Storage para acesso público somente-leitura.
 - [x] Instruir o cliente sobre o upload manual de imagens via painel Supabase.
+
+## [/] Fase 8: Metadados da Galeria via Banco de Dados — EM ANDAMENTO
+- [x] Documentar tabela `trabalhos_recentes` no `estrutura_db.md`.
+- [/] Refatorar `WorkGallery.jsx` para buscar dados da tabela em vez do bucket.
+- [ ] Exibir o campo `titulo` de forma dinâmica na interface.
