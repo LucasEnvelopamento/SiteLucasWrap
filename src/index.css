@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ─── Paleta de Cores ─────────────────── */
+    --primary: 10 10 10;
+    --secondary: 231 158 0;
+    --accent: 148 163 184;
+
+    /* ─── Fluid Typography (skill: responsive-design) ─── */
+    --text-sm:   clamp(0.875rem, 0.82rem + 0.28vw, 1rem);
+    --text-base: clamp(1rem,     0.94rem + 0.3vw,  1.125rem);
+    --text-lg:   clamp(1.125rem, 1rem    + 0.63vw, 1.375rem);
+    --text-xl:   clamp(1.25rem,  1rem    + 1.25vw, 1.75rem);
+    --text-2xl:  clamp(1.5rem,   1.2rem  + 1.5vw,  2.25rem);
+    --text-3xl:  clamp(1.875rem, 1.4rem  + 2.38vw, 3rem);
+    --text-4xl:  clamp(2.25rem,  1.5rem  + 3.75vw, 4rem);
+    --text-hero: clamp(3rem,     2rem    + 5vw,    6rem);
+
+    /* ─── Fluid Spacing ───────────────────── */
+    --space-section: clamp(4rem, 8vw, 8rem);
+    --space-gap:     clamp(1rem, 2vw, 2rem);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary text-slate-300;
+    font-size: var(--text-base);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply relative px-6 py-3 bg-secondary text-white font-semibold rounded-md 
+           transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(231,158,0,0.4)]
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply relative px-6 py-3 border border-accent/30 text-accent font-semibold rounded-md
+           transition-all duration-300 hover:bg-accent/10 hover:border-accent
+           active:scale-95 disabled:opacity-50;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6
+           transition-all duration-300 hover:border-secondary/30;
+  }
+
+  /* Carbon Fiber Texture */
+  .carbon-bg {
+    background-color: #0a0a0a;
+    background-image: linear-gradient(45deg, #111 25%, transparent 25%), 
+                      linear-gradient(-45deg, #111 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, #111 75%), 
+                      linear-gradient(-45deg, transparent 75%, #111 75%);
+    background-size: 4px 4px;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin;
+  }
+
+  /* Lazy image fade-in */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary/30 rounded-full hover:bg-secondary/60 transition-colors;
+}
+
