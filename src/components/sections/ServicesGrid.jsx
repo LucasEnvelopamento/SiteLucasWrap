@@ -11,7 +11,7 @@ const services = [
   },
   {
     icon: Shield,
-    title: 'PPF (Self-Healing)',
+    title: 'PPF',
     description: 'Película de proteção de pintura transparente ultra-resistente contra impactos de pedras e raspões.',
     features: ['Regeneração Térmica', 'Invisível', '7 Anos de Garantia']
   },

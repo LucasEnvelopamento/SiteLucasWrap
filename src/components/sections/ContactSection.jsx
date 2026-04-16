@@ -162,7 +162,7 @@ const ContactSection = () => {
                       onChange={(e) => setFormData({ ...formData, servico: e.target.value })}
                     >
                       <option className="bg-zinc-900" value="Envelopamento">Envelopamento Premium</option>
-                      <option className="bg-zinc-900" value="PPF">PPF High Performance</option>
+                      <option className="bg-zinc-900" value="PPF">PPF</option>
                       <option className="bg-zinc-900" value="Insulfilm">Insulfilm Profissional</option>
                       <option className="bg-zinc-900" value="Carbono">Carbono / Detalhes</option>
                     </select>

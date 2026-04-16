@@ -70,7 +70,16 @@ Este documento descreve as etapas de desenvolvimento do site para a oficina auto
 - [x] Configurar regras de segurança (RLS) no Supabase Storage para acesso público somente-leitura.
 - [x] Instruir o cliente sobre o upload manual de imagens via painel Supabase.
 
-## [/] Fase 8: Metadados da Galeria via Banco de Dados — EM ANDAMENTO
+## ✅ Fase 8: Metadados da Galeria via Banco de Dados — CONCLUÍDA
 - [x] Documentar tabela `trabalhos_recentes` no `estrutura_db.md`.
-- [/] Refatorar `WorkGallery.jsx` para buscar dados da tabela em vez do bucket.
-- [ ] Exibir o campo `titulo` de forma dinâmica na interface.
+- [x] Refatorar `WorkGallery.jsx` para buscar dados da tabela em vez do bucket.
+- [x] Exibir o campo `titulo` de forma dinâmica na interface.
+- [x] Homologação local com o cliente.
+
+## ✅ Fase 9: Ajustes Finos de Conteúdo — CONCLUÍDA
+- [x] Simplificar nomenclatura de PPF (remover "Self-Healing" e "High Performance") em:
+  - `ServicesGrid.jsx`
+  - `ContactSection.jsx`
+  - `Footer.jsx`
+- [x] Atualizar link do TikTok para `@lucaswrap` no `Footer.jsx`.
+- [x] Substituir ícone genérico pelo ícone oficial do TikTok (SVG) no `Footer.jsx`.

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, Instagram, Youtube, MessageCircle, MapPin, Phone, Mail } from 'lucide-react';
+import { Zap, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -25,8 +25,19 @@ const Footer = () => {
             <a href="https://www.youtube.com/channel/UCXr4MK37RkTzTFWLZQuiqjw" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
               <Youtube size={20} />
             </a>
-            <a href="https://www.tiktok.com/@lucasenvelopamento" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
-              <MessageCircle size={20} />
+            <a href="https://www.tiktok.com/@lucaswrap" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
+              <svg 
+                width="18" 
+                height="18" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+              </svg>
             </a>
           </div>
         </div>
@@ -47,7 +58,7 @@ const Footer = () => {
           <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Serviços</h4>
           <ul className="space-y-4 text-accent text-sm">
             <li>Envelopamento Premium</li>
-            <li>PPF High Performance</li>
+            <li>PPF</li>
             <li>Insulfilm Profissional</li>
             <li>Carbono e Personalização</li>
           </ul>
