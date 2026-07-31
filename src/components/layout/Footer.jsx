@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
+import { SOCIAL_LINKS, STORE_PHONE_DISPLAY, STORE_ADDRESS_FULL, STORE_EMAIL } from '../../lib/constants';
 
 const Footer = () => {
   return (
@@ -19,13 +20,13 @@ const Footer = () => {
             Referência em estética automotiva premium. Especialistas em proteção, estilo e personalização exclusiva para veículos de alto padrão.
           </p>
           <div className="flex gap-4">
-            <a href="https://www.instagram.com/lucasenvelopamento/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
               <Instagram size={20} />
             </a>
-            <a href="https://www.youtube.com/channel/UCXr4MK37RkTzTFWLZQuiqjw" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
+            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
               <Youtube size={20} />
             </a>
-            <a href="https://www.tiktok.com/@lucaswrap" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
+            <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-accent hover:bg-secondary hover:text-white transition-all">
               <svg 
                 width="18" 
                 height="18" 
@@ -70,15 +71,15 @@ const Footer = () => {
           <ul className="space-y-4 text-accent text-sm">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-secondary flex-shrink-0" />
-              <span>Rua João Batista de Godoy, 1068<br/>Jardim das Oliveiras, São Paulo - SP</span>
+              <span className="whitespace-pre-line">{STORE_ADDRESS_FULL}</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-secondary flex-shrink-0" />
-              <span>(11) 94542-7696</span>
+              <span>{STORE_PHONE_DISPLAY}</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={18} className="text-secondary flex-shrink-0" />
-              <span>contato@lucasenvelopamento.com.br</span>
+              <span>{STORE_EMAIL}</span>
             </li>
           </ul>
         </div>
@@ -87,8 +88,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-accent/50">
         <p>© 2026 LUCAS ENVELOPAMENTO. Todos os direitos reservados.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-accent transition-colors">Política de Privacidade</a>
-          <a href="#" className="hover:text-accent transition-colors">Termos de Uso</a>
+          {/* Links de Política e Termos removidos até que as páginas existam */}
         </div>
       </div>
     </footer>

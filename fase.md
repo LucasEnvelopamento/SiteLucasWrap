@@ -83,3 +83,195 @@ Este documento descreve as etapas de desenvolvimento do site para a oficina auto
   - `Footer.jsx`
 - [x] Atualizar link do TikTok para `@lucaswrap` no `Footer.jsx`.
 - [x] Substituir ícone genérico pelo ícone oficial do TikTok (SVG) no `Footer.jsx`.
+
+---
+
+## 🔄 Fase 10: Design Premium & UX (Visual WOW) — PENDENTE
+> **Objetivo:** Elevar o site de "bom" para "incrível". Redesign visual completo com animações premium, novas seções de impacto e experiência de usuário de alto nível.
+> **Referência geral:** `documentacao.md` → Seção 5 (Pontos Fracos: Design & UX) + Seção 8A
+
+- [ ] **10.1 — Logo real da empresa**
+  - Substituir ícone `Zap` genérico pela logo oficial em `Navbar.jsx` e `Footer.jsx`.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 1
+  - 📁 Arquivos: `src/components/layout/Navbar.jsx`, `src/components/layout/Footer.jsx`
+  - ⚠️ **Depende do cliente fornecer a logo (PNG/SVG)**
+
+- [ ] **10.2 — Hero com vídeo de fundo ou imagens reais**
+  - Substituir imagens stock por vídeo cinematográfico ou fotos reais da oficina.
+  - Adicionar preload na primeira imagem/frame do vídeo para performance.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 2 + Seção 5, Técnico, itens 5-6
+  - 📁 Arquivos: `src/components/sections/HeroCarousel.jsx`, `src/assets/`
+  - ⚠️ **Depende do cliente fornecer vídeo/fotos reais**
+
+- [x] **10.3 — Lightbox modal na galeria**
+  - Implementar modal fullscreen ao clicar nas fotos da galeria com navegação (prev/next), zoom e swipe mobile.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 3
+  - 📁 Arquivos: `src/components/sections/WorkGallery.jsx` (criar novo componente `src/components/ui/Lightbox.jsx`)
+
+- [ ] **10.4 — Filtro por categoria na galeria**
+  - Adicionar filtros (Todos, PPF, Envelopamento, Insulfilm, Carbono) na galeria de trabalhos.
+  - Requer campo `categoria` na tabela `trabalhos_recentes` do Supabase.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 4 + Seção 3 (Banco de Dados)
+  - 📁 Arquivos: `src/components/sections/WorkGallery.jsx`, `estrutura_db.md`
+
+- [ ] **10.5 — Seção de Depoimentos (Prova Social)**
+  - Criar carousel de depoimentos com avatar, nome, texto e estrelas.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 5
+  - 📁 Criar: `src/components/sections/TestimonialsSection.jsx`
+  - ⚠️ **Depende do cliente fornecer depoimentos reais**
+
+- [x] **10.6 — Seção de Estatísticas animadas**
+  - Contadores animados: "+1500 veículos", "+15 anos", "99% satisfação", "+6 serviços".
+  - Animação de contagem ao entrar na viewport (Framer Motion).
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 10 + Seção 8A, item 7
+  - 📁 Criar: `src/components/sections/StatsSection.jsx`
+
+- [x] **10.7 — Seção FAQ (Perguntas Frequentes)**
+  - Accordion animado com as perguntas mais frequentes sobre serviços.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 6 + Seção 8A, item 8
+  - 📁 Criar: `src/components/sections/FAQSection.jsx`
+
+- [ ] **10.8 — Parallax effects e micro-animações**
+  - Adicionar efeitos de parallax suaves nas seções com imagens.
+  - Micro-animações em hover dos cards de serviço e galeria.
+  - Scroll progress bar no topo da página.
+  - Scroll indicator (seta animada) no hero.
+  - 📎 Ref: `documentacao.md` → Seção 8A, itens 1, 4, 9
+  - 📁 Arquivos: `src/App.jsx`, `src/components/sections/HeroCarousel.jsx`, `src/components/sections/ServicesGrid.jsx`
+
+- [ ] **10.9 — Slider Antes/Depois interativo**
+  - Componente de comparação visual com slider arrastável.
+  - 📎 Ref: `documentacao.md` → Seção 8A, item 10
+  - 📁 Criar: `src/components/sections/BeforeAfterSection.jsx`
+  - ⚠️ **Depende do cliente fornecer fotos de antes/depois**
+
+- [x] **10.10 — Componente SectionTitle unificado**
+  - Refatorar todas as seções para usar o `SectionTitle.jsx` já existente (eliminar títulos duplicados).
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 8
+  - 📁 Arquivos: `src/components/ui/SectionTitle.jsx`, todos os arquivos em `src/components/sections/`
+
+- [x] **10.11 — Corrigir links mortos do Footer**
+  - Links "Política de Privacidade" e "Termos de Uso" com `href="#"` devem apontar para conteúdo real ou serem removidos.
+  - 📎 Ref: `documentacao.md` → Seção 5, Design & UX, item 7
+  - 📁 Arquivos: `src/components/layout/Footer.jsx`
+
+- [ ] **Homologação visual com o cliente (Fase 10)**
+
+---
+
+## 🔧 Fase 11: Refatoração Técnica & Código — PENDENTE
+> **Objetivo:** Limpar débito técnico, centralizar configurações, melhorar SEO e preparar o projeto para manutenção futura.
+> **Referência geral:** `documentacao.md` → Seção 5 (Pontos Fracos: Técnico) + Seção 8B
+
+- [x] **11.1 — Centralizar constantes globais**
+  - Criar `src/lib/constants.js` com STORE_PHONE, WHATSAPP_LINK, endereço, redes sociais.
+  - Eliminar hardcoded em `App.jsx`, `ContactSection.jsx`, `Navbar.jsx`, `Footer.jsx`.
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, item 1 + Seção 8B, item 1
+  - 📁 Criar: `src/lib/constants.js`
+  - 📁 Atualizar: `src/App.jsx`, `src/components/layout/Navbar.jsx`, `src/components/layout/Footer.jsx`, `src/components/sections/ContactSection.jsx`
+
+- [x] **11.2 — Remover imagens PNG do bundle**
+  - Deletar os 6 arquivos .png de `src/assets/` (já existem versões .webp otimizadas).
+  - Economia estimada: ~3.97 MB do bundle.
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, item 3
+  - 📁 Arquivos: `src/assets/*.png`
+
+- [x] **11.3 — Criar .env.example**
+  - Documentar variáveis de ambiente necessárias para onboarding de novos devs.
+  - Variáveis: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, item 2
+  - 📁 Criar: `.env.example`
+
+- [x] **11.4 — Tratamento de erro no Supabase client**
+  - Adicionar validação de variáveis de ambiente com mensagem clara se faltarem.
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, item 4
+  - 📁 Arquivos: `src/lib/supabase.js`
+
+- [ ] **11.5 — Favicon e manifest personalizados**
+  - Substituir `vite.svg` por favicon da marca (multi-tamanho).
+  - Criar `manifest.json` para instalabilidade PWA.
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, itens 9-10
+  - 📁 Arquivos: `index.html`, `public/favicon.ico`, criar `public/manifest.json`
+  - ⚠️ **Depende do cliente fornecer a logo para gerar o favicon**
+
+- [x] **11.6 — Sitemap.xml e robots.txt**
+  - Criar arquivos estáticos para indexação do Google.
+  - 📎 Ref: `documentacao.md` → Seção 5, Técnico, item 8 + Seção 8B, item 6
+  - 📁 Criar: `public/sitemap.xml`, `public/robots.txt`
+
+- [x] **11.7 — Schema.org JSON-LD (SEO Local)**
+  - Adicionar markup de negócio local (LocalBusiness) no `index.html`.
+  - Melhorar posicionamento em buscas locais "envelopamento SP".
+  - 📎 Ref: `documentacao.md` → Seção 8C, item 4
+  - 📁 Arquivos: `index.html`
+
+- [ ] **Validação técnica e testes de build (Fase 11)**
+
+---
+
+## 📊 Fase 12: Conversão, Analytics & Leads — PENDENTE
+> **Objetivo:** Transformar o site em máquina de conversão. Capturar leads no banco, integrar analytics e otimizar para campanhas pagas.
+> **Referência geral:** `documentacao.md` → Seção 3 (Banco de Dados) + Seção 5 (Técnico, item 7) + Seção 8C
+
+- [x] **12.1 — Salvar leads no Supabase**
+  - Ativar tabela `leads_contato` já documentada no `estrutura_db.md`.
+  - Criar RPC segura (ou Edge Function) para inserção de leads.
+  - Manter o redirecionamento para WhatsApp após salvar.
+  - 📎 Ref: `documentacao.md` → Seção 3 (tabela `leads_contato`) + Seção 5, Técnico, item 7 + Seção 8C, item 1
+  - 📎 Ref BD: `estrutura_db.md` → tabela `leads_contato`
+  - 📁 Arquivos: `src/components/sections/ContactSection.jsx`, `estrutura_db.md`
+
+- [x] **12.2 — RLS para tabela leads_contato**
+  - Criar políticas: INSERT público (anon), SELECT/UPDATE/DELETE apenas para autenticados.
+  - 📎 Ref: `documentacao.md` → Seção 3 (RLS) + Seção 8D, item 1
+  - 📎 Ref BD: `estrutura_db.md` → Regras de Integridade
+  - 📎 Ref Segurança: `_skills/01-baas-security-constitution.md` → Seções 4-5
+
+- [x] **12.3 — Google Analytics 4 (GA4)**
+
+- [x] **12.4 — Pixel Meta (Facebook/Instagram)**
+
+- [ ] **Homologação de conversão com o cliente (Fase 12)**
+
+---
+
+## 🔒 Fase 13: Segurança & Produção — PENDENTE
+> **Objetivo:** Garantir que o site esteja seguro, performático e pronto para produção conforme o pipeline de skills lean.
+> **Referência geral:** `documentacao.md` → Seção 5 (Segurança) + Seção 6 (Pipeline de Skills) + Seção 8D
+
+- [x] **13.1 — Validação RLS em todas as tabelas**
+  - Auditar e confirmar RLS ativo em `trabalhos_recentes` e `leads_contato`.
+  - Documentar todas as políticas no `estrutura_db.md`.
+  - 📎 Ref: `documentacao.md` → Seção 3 (RLS) + Seção 5, Segurança, item 2
+  - 📎 Ref Segurança: `_skills/01-baas-security-constitution.md` → Seções 4-5
+  - 📎 Ref BD: `estrutura_db.md`
+
+- [x] **13.2 — Rate limiting no formulário**
+  - Implementar anti-spam no frontend (debounce/cooldown) e considerar Edge Function para validação server-side.
+  - 📎 Ref: `documentacao.md` → Seção 5, Segurança, item 3 + Seção 8D, item 2
+  - 📎 Ref Segurança: `_skills/01-baas-security-constitution.md` → Seção 9
+  - 📁 Arquivos: `src/components/sections/ContactSection.jsx`
+
+- [x] **13.3 — Content Security Policy (CSP) via Vercel**
+  - Configurar headers de segurança no `vercel.json`.
+  - 📎 Ref: `documentacao.md` → Seção 8D, item 3
+  - 📎 Ref Segurança: `_skills/01-baas-security-constitution.md` → Seção 12
+  - 📁 Criar: `vercel.json`
+
+- [x] **13.4 — QA + Production Review**
+  - Executar pipeline completo de validação conforme skill `04-qa-production-review.md`.
+  - Validar: fluxos críticos, regressões, performance, build Vercel.
+  - 📎 Ref: `_skills/04-qa-production-review.md` (documento completo)
+  - 📎 Ref Pipeline: `_skills/00-lean-orchestrator.md` → Step 5
+
+- [x] **13.5 — Code Maturity Assessment**
+  - Executar avaliação de maturidade de código conforme skill `code-maturity-assessor`.
+  - 📎 Ref: `skills/code-maturity-assessor/SKILL.md`
+
+- [ ] **13.6 — Release Decision**
+  - Aprovar ou rejeitar release para produção conforme pipeline lean.
+  - Requisitos: Security ✅, PRP ✅, Architecture ✅, QA ✅
+  - 📎 Ref Pipeline: `_skills/00-lean-orchestrator.md` → Seções 5-6
+  - 📎 Ref: `documentacao.md` → Seção 6 (Pipeline de Skills)
+
+- [ ] **Deploy final em produção (Vercel)**

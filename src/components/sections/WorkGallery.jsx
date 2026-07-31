@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../lib/supabase';
+import SectionTitle from '../ui/SectionTitle';
+import Lightbox from '../ui/Lightbox';
 
 const WorkGallery = () => {
   const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -42,16 +45,15 @@ const WorkGallery = () => {
 
   return (
     <section id="portfolio" className="py-32 bg-black overflow-hidden min-h-[600px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-20 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-        <div>
-          <span className="text-secondary font-display font-bold tracking-[0.4em] uppercase text-xs">NOSSA ARTE</span>
-          <h2 className="text-4xl md:text-6xl font-display font-black italic mt-4 uppercase text-white">
-            TRABALHOS <span className="text-secondary">RECENTES</span>
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-2 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div className="flex-1">
+          <SectionTitle 
+            eyebrow="NOSSA ARTE"
+            title={<>TRABALHOS <span className="text-secondary">RECENTES</span></>}
+            subtitle="Cada projeto é tratado como exclusivo, unindo paixão automotiva e precisão milimétrica."
+            align="left"
+          />
         </div>
-        <p className="text-accent max-w-sm mb-2 text-slate-400">
-          Cada projeto é tratado como exclusivo, unindo paixão automotiva e precisão milimétrica.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
@@ -71,6 +73,7 @@ const WorkGallery = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: idx * 0.1 }}
+                  onClick={() => setSelectedImage(work)}
                   className="group relative h-[450px] overflow-hidden cursor-pointer"
                 >
                   <img 
@@ -109,6 +112,13 @@ const WorkGallery = () => {
       <div className="mt-20 text-center text-accent/20 text-4xl sm:text-7xl lg:text-[10rem] font-display font-black italic tracking-tighter opacity-30 select-none pointer-events-none uppercase leading-none px-4">
         #QUALIDADE <br className="sm:hidden" /> LUCAS <br className="sm:hidden" /> ENVELOPAMENTO
       </div>
+
+      <Lightbox 
+        isOpen={!!selectedImage} 
+        imageSrc={selectedImage?.image} 
+        title={selectedImage?.title}
+        onClose={() => setSelectedImage(null)} 
+      />
     </section>
   );
 };

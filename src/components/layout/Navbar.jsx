@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { WHATSAPP_LINK } from '../../lib/constants';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ const Navbar = () => {
             </a>
           ))}
           <a 
-            href="https://wa.me/5511945427696"
+            href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-xs uppercase tracking-widest px-8"
@@ -87,7 +88,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://wa.me/5511945427696"
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}

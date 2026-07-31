@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Wind, Aperture, Layers, Lock } from 'lucide-react';
+import SectionTitle from '../ui/SectionTitle';
 
 const services = [
   {
@@ -45,22 +46,11 @@ const ServicesGrid = () => {
   return (
     <section id="servicos" className="py-32 bg-primary relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-20">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-secondary font-display font-bold tracking-[0.4em] uppercase text-xs"
-          >
-            NOSSAS ESPECIALIDADES
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-black italic mt-4"
-          >
-            O QUE FAZEMOS <span className="text-secondary">MELHOR</span>
-          </motion.h2>
-        </div>
+        <SectionTitle 
+          eyebrow="NOSSAS ESPECIALIDADES"
+          title={<>O QUE FAZEMOS <span className="text-secondary">MELHOR</span></>}
+          align="center"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (

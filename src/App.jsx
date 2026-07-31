@@ -5,13 +5,14 @@ import ServicesGrid from './components/sections/ServicesGrid';
 import WorkGallery from './components/sections/WorkGallery';
 import AboutSection from './components/sections/AboutSection';
 import ContactSection from './components/sections/ContactSection';
+import StatsSection from './components/sections/StatsSection';
+import FAQSection from './components/sections/FAQSection';
 import Footer from './components/layout/Footer';
 import { MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { WHATSAPP_LINK } from './lib/constants';
 
 function App() {
-  const WHATSAPP_LINK = "https://wa.me/5511945427696";
-
   return (
     <div className="min-h-screen bg-primary selection:bg-secondary selection:text-white">
       <Navbar />
@@ -21,6 +22,8 @@ function App() {
         <ServicesGrid />
         <WorkGallery />
         <AboutSection />
+        <StatsSection />
+        <FAQSection />
         <ContactSection />
 
         {/* CTA Section Final */}

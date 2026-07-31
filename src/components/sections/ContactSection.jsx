@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MapPin, MessageCircle, CheckCircle } from 'lucide-react';
-
-// ─── Constante global de contato ───────────────────────────
-const STORE_PHONE = "5511945427696";
+import SectionTitle from '../ui/SectionTitle';
+import { supabase } from '../../lib/supabase';
+import { STORE_PHONE, STORE_PHONE_DISPLAY, STORE_ADDRESS_SHORT } from '../../lib/constants';
 
 const ContactSection = () => {
   const [formState, setFormState] = useState('idle'); // idle | loading | success
@@ -20,14 +20,43 @@ const ContactSection = () => {
     return digits.length >= 10 && digits.length <= 11;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validatePhone(formData.whatsapp)) {
       setPhoneError('Informe um número de WhatsApp válido (DDD + número).');
       return;
     }
+
+    // Rate Limiting Anti-Spam (60 segundos)
+    const lastSent = localStorage.getItem('lastLeadSent');
+    if (lastSent && Date.now() - parseInt(lastSent) < 60000) {
+      setPhoneError('Por favor, aguarde 1 minuto antes de enviar outra solicitação.');
+      return;
+    }
+
     setPhoneError('');
     setFormState('loading');
+
+    try {
+      const { error } = await supabase
+        .from('leads_contato')
+        .insert([
+          {
+            cliente_nome: formData.nome,
+            cliente_whatsapp: formData.whatsapp,
+            veiculo_modelo: 'Não informado',
+            servico_interesse: formData.servico,
+            mensagem: formData.mensagem,
+            status: 'Novo'
+          }
+        ]);
+
+      if (error) {
+        console.error("Erro ao salvar lead no Supabase:", error);
+      }
+    } catch (err) {
+      console.error("Exceção ao salvar lead:", err);
+    }
 
     const text = `*NOVA SOLICITAÇÃO DE ORÇAMENTO*%0A%0A` +
                  `*Nome:* ${formData.nome}%0A` +
@@ -38,6 +67,7 @@ const ContactSection = () => {
     const whatsappUrl = `https://wa.me/${STORE_PHONE}?text=${text}`;
 
     setTimeout(() => {
+      localStorage.setItem('lastLeadSent', Date.now().toString());
       window.open(whatsappUrl, '_blank');
       setFormState('success');
       setFormData({ nome: '', whatsapp: '', servico: 'Envelopamento', mensagem: '' });
@@ -51,14 +81,13 @@ const ContactSection = () => {
 
           {/* Info & Map */}
           <div className="space-y-10">
-            <div>
-              <span className="text-secondary font-display font-bold tracking-[0.4em] uppercase text-xs">ONDE ESTAMOS</span>
-              <h2 className="text-4xl md:text-6xl font-display font-black italic mt-4 mb-6 text-white uppercase">
-                VISITE NOSSO <span className="text-secondary">ESTÚDIO</span>
-              </h2>
-              <p className="text-accent text-lg">
-                Venha conhecer pessoalmente nosso padrão de qualidade e conversar sobre o seu projeto.
-              </p>
+            <div className="mb-4">
+              <SectionTitle 
+                eyebrow="ONDE ESTAMOS"
+                title={<>VISITE NOSSO <span className="text-secondary">ESTÚDIO</span></>}
+                subtitle="Venha conhecer pessoalmente nosso padrão de qualidade e conversar sobre o seu projeto."
+                align="left"
+              />
             </div>
 
             {/* Google Maps Embed */}
@@ -79,13 +108,13 @@ const ContactSection = () => {
               <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
                 <MapPin className="text-secondary" />
                 <span className="text-sm text-slate-300">
-                  Rua João Batista de Godoy, 1068<br />São Paulo - SP
+                  {STORE_ADDRESS_SHORT}
                 </span>
               </div>
               <div className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
                 <MessageCircle className="text-secondary" />
                 <span className="text-sm text-slate-300">
-                  WhatsApp Oficial<br />(11) 94542-7696
+                  WhatsApp Oficial<br />{STORE_PHONE_DISPLAY}
                 </span>
               </div>
             </div>

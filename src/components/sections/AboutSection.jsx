@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Award, Zap } from 'lucide-react';
+import SectionTitle from '../ui/SectionTitle';
 import suvImg from '../../assets/suv_finished.webp';
 
 const AboutSection = () => {
@@ -38,11 +39,12 @@ const AboutSection = () => {
           {/* Content Side */}
           <div className="space-y-8">
             <div>
-              <span className="text-secondary font-display font-bold tracking-[0.4em] uppercase text-xs">A LIDERANÇA</span>
-              <h2 className="text-4xl md:text-6xl font-display font-black italic mt-4 mb-6">MAIS DO QUE <span className="text-secondary">PROTEÇÃO</span>, UMA ARTE.</h2>
-              <p className="text-accent text-lg leading-relaxed">
-                Na <span className="text-white font-bold">Lucas Envelopamento</span>, não apenas aplicamos películas. Nós elevamos o padrão do seu veículo através de processos artesanais e materiais de elite mundial.
-              </p>
+              <SectionTitle 
+                eyebrow="A LIDERANÇA"
+                title={<>MAIS DO QUE <span className="text-secondary">PROTEÇÃO</span>, UMA ARTE.</>}
+                subtitle={<>Na <span className="text-white font-bold">Lucas Envelopamento</span>, não apenas aplicamos películas. Nós elevamos o padrão do seu veículo através de processos artesanais e materiais de elite mundial.</>}
+                align="left"
+              />
             </div>
 
             <div className="space-y-4">
